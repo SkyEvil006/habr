@@ -1,0 +1,30 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+
+{% if user == article.author %}
+    <br>
+<a href="{% url 'articleapp:change-article' article.id %}" class="btn btn-light">Изменить</a>
+    <a href="{% url 'articleapp:create-block' art_id=article.id %}" class="btn btn-light">Добавить блок</a>
+
+    {% for block in blocks %}
+        <h3>{{ block.title }}</h3>
+        <h5>{{ block.memo }}</h5>
+        <a href="{% url 'articleapp:change_block' block_id=block.id %}" class="btn btn-light">Изменить блок</a>
+        <br>
+    {% endfor %}
+{% else %}
+    <h2>{{ article.title }}</h2>
+    {% if blocks %}
+        <h3>{{ blocks.0.title }}</h3>
+        <h5>{{ blocks.0.memo }}</h5>
+    {% endif %}
+{% endif %}
+
+<br>
+<br>
+{% if user_liked %}
+<a href="{% url 'articleapp:unlike' article.id %}" class="btn btn-danger">Unlike ({{ likes_count }})</a>
+{% else %}
+    <a href="{% url 'articleapp:like' article.id %}"class="btn btn-success">Like ({{ likes_count }})</a>
+{% endif %}
+{% endblock %}

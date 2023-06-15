@@ -1,0 +1,32 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+
+<h2>Мои статьи</h2>
+
+<div class="card w-50">
+  <div class="card-body">
+    <h5 class="card-title">{{article.title}}</h5>
+    <p class="card-text"> </p>
+    <a href="{% url 'articleapp:change-article' article.id %}" class="btn btn-primary">Редактировать</a>
+  </div>
+</div>
+
+
+<br>
+
+<h3>Блоки/h3>
+
+{% for j in articleblocks %}
+<div class="card w-50">
+  <div class="card-body">
+    <h5 class="card-title">{{j.title}}</h5>
+    <p class="card-text"> </p>
+    <a href="{% url 'articleapp:create_block' article.id %}" class="btn btn-primary">Добавить блок</a>
+  </div>
+</div>
+
+  <br>
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+
+{% extends 'mainapp/base.html' %}
+{% block content %}
+{% autoescape off %}
+
+<form action="" method="POST", enctype="multipart/form-data">
+
+  {% csrf_token %}
+  {{form.as_p}}
+
+  <input type="submit" value="создать">
+</form>
+
+<small>{{ error }}</small>
+
+  {% endautoescape %}
+{% endblock %}
